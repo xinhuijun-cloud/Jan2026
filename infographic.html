@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026년 거시경제와 게임 산업 전략 보고서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Choosing a Vibrant Tech/Finance Palette: 'Deep Ocean & Neon' -->
+    <!-- Palette: Bg: #F3F4F6, Primary: #1E3A8A (Dark Blue), Accent: #3B82F6 (Blue), Highlight: #10B981 (Emerald), Alert: #EF4444 (Red) -->
+    <style>
+        /* Custom Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%; /* Constraints handled by grid layout */
+            height: 350px;
+            max-height: 400px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif; /* Assumed system font fallback */
+            background-color: #F8FAFC;
+            color: #1E293B;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- PLAN SUMMARY (HTML Comment)
+    Narrative Flow:
+    1. Introduction: 2026 Macro Landscape (New Normal, Low Growth, Stabilized Rates).
+    2. The Problem: Crisis of Organic Growth & Low Valuations (PBR < 1).
+    3. The Solution: M&A Imperative & Genre Shift (MMO -> Casual).
+    4. Case Study: Line Studio (Alliance Strategy & IP Importance).
+    5. Conclusion: Investment Matrix (Arbitrage & FX Beneficiaries).
+    -->
+
+    <!-- PALETTE SELECTION (HTML Comment)
+    Selected Palette: "Professional & Trust" with Vibrant Accents.
+    Primary: #1e40af (Blue 800)
+    Secondary: #3b82f6 (Blue 500)
+    Accent: #8b5cf6 (Violet 500)
+    Background: #f8fafc (Slate 50)
+    Text: #1e293b (Slate 800)
+    -->
+
+    <!-- VISUALIZATION JUSTIFICATION (HTML Comment)
+    1. Macro Indicators -> Goal: Inform -> Mixed Chart (Line/Bar) -> Shows GDP stability vs Interest Rates.
+    2. PBR Valuation Gap -> Goal: Compare -> Bar Chart -> Highlights the severe undervaluation of specific firms (Webzen/Com2uS) vs Threshold.
+    3. Portfolio Shift -> Goal: Change -> Stacked Bar or Doughnut -> Shows transition from Hardcore MMO to Casual/Diversified.
+    4. M&A Logic Flow -> Goal: Organize -> HTML Flow Diagram -> Explains the logical steps of the strategy (No SVG).
+    5. Investment Quadrant -> Goal: Relationships -> Scatter Plot -> Maps PBR vs Global Revenue Share.
+    -->
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-12 px-4 shadow-lg">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight">2026 거시경제 변화와<br>게임 산업의 전략적 재편</h1>
+            <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">
+                구조적 저성장과 고금리 뉴노멀 시대, M&A 필연성과 저평가주 가치 제고를 통한 생존 전략
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
+
+        <!-- SECTION 1: MACRO OVERVIEW -->
+        <section>
+            <div class="mb-6 border-l-4 border-blue-600 pl-4">
+                <h2 class="text-2xl font-bold text-gray-900">1. 2026년 거시경제: 뉴노멀(New Normal)의 도래</h2>
+                <p class="mt-2 text-gray-600">
+                    2026년 한국 경제는 고도성장기를 지나 잠재성장률 2% 내외의 안정화 단계에 진입할 것으로 전망됩니다. 
+                    환율과 금리의 변동성은 축소되지만, 자본 비용은 구조적으로 높아진 상태가 지속될 것입니다. 
+                    이는 기업들에게 단순한 매출 증대보다 <strong>자본 효율성</strong>을 요구하는 환경입니다.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Chart 1: Macro Indicators -->
+                <div class="bg-white rounded-xl card-shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">경제 성장률 및 금리 전망 (KDI/IMF 기반)</h3>
+                    <div class="chart-container">
+                        <canvas id="macroChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4 text-center">
+                        *수출 둔화 속 내수 회복, 잠재성장률 1.8~2.1% 수렴
+                    </p>
+                </div>
+
+                <!-- Text Card: Key Impacts -->
+                <div class="bg-white rounded-xl card-shadow p-6 flex flex-col justify-center space-y-6">
+                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2">산업에 미치는 핵심 영향</h3>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl">1</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">유기적 성장(Organic Growth)의 한계</h4>
+                            <p class="text-sm text-gray-600">내부 개발만으로는 높아진 자본 비용을 감당하기 어려움. 외부 수혈 필연적.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xl">2</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">비용 구조의 압박</h4>
+                            <p class="text-sm text-gray-600">인건비 상승과 마케팅 비용 증가로 인한 이익률 훼손.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold text-xl">3</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">환율 리스크</h4>
+                            <p class="text-sm text-gray-600">고환율 지속 시 내수 중심 기업보다 수출 중심 기업(크래프톤 등)이 유리.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: INDUSTRY CRISIS & VALUATION -->
+        <section>
+            <div class="mb-6 border-l-4 border-indigo-600 pl-4">
+                <h2 class="text-2xl font-bold text-gray-900">2. 위기와 기회: PBR 1배 미만의 초저평가 상황</h2>
+                <p class="mt-2 text-gray-600">
+                    현재 다수의 중견 게임사들이 PBR 1배 미만, 심지어 0.5배 수준의 청산 가치 미만으로 거래되고 있습니다.
+                    이는 <strong>'승자 독식'이 아닌 '생존을 위한 연합'</strong>, 즉 M&A를 정당화하는 강력한 명분이 됩니다.
+                    현금성 자산이 풍부한 대형사(엔씨소프트, 크래프톤)에게는 '바겐세일' 기간입니다.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-xl card-shadow p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Chart 2: PBR Valuation -->
+                    <div class="md:col-span-2">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">주요 게임사 PBR(주가순자산비율) 현황 비교</h3>
+                        <div class="chart-container">
+                            <canvas id="pbrChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Insight Card -->
+                    <div class="flex flex-col justify-center bg-gray-50 rounded-lg p-6">
+                        <h4 class="text-xl font-bold text-indigo-700 mb-3">Arbitrage (차익거래) 기회</h4>
+                        <ul class="space-y-4 text-gray-700">
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
+                                <span><strong>타겟 기업:</strong> 웹젠, 컴투스 등 자산주 성격의 저평가 기업 (PBR ~0.5)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
+                                <span><strong>전략:</strong> 대주주 지분 인수 또는 주주 행동주의 타겟 가능성</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
+                                <span><strong>리스크:</strong> 본업(신작)의 턴어라운드 여부 확인 필수</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: STRATEGIC SHIFT & LINE STUDIO CASE -->
+        <section>
+            <div class="mb-6 border-l-4 border-teal-600 pl-4">
+                <h2 class="text-2xl font-bold text-gray-900">3. 성장 전략: 장르 다변화와 연합 전략 (Case: 라인스튜디오)</h2>
+                <p class="mt-2 text-gray-600">
+                    MMORPG 중심의 무거운 구조에서 벗어나, 캐주얼 및 하이브리드 장르로의 이동이 가속화되고 있습니다.
+                    특히 <strong>라인스튜디오의 사례</strong>는 저 PBR 인수 및 캐주얼 게임 투자를 통한 기업 가치 제고의 리트머스 시험지가 될 것입니다.
+                </p>
+            </div>
+
+            <!-- HTML Diagram: The Line Studio Model -->
+            <div class="bg-white rounded-xl card-shadow p-8 mb-8">
+                <h3 class="text-lg font-bold text-center text-gray-800 mb-8">라인스튜디오 성장 및 연합 전략 구조</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                    <!-- Step 1 -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center h-full flex flex-col justify-center">
+                        <div class="text-3xl mb-2">🎮</div>
+                        <h4 class="font-bold text-blue-800">자체 IP 강화</h4>
+                        <p class="text-sm text-blue-600 mt-1">'매치플라이트' 등<br>캐주얼 히트작 확보</p>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="text-center text-gray-400 text-2xl font-bold transform rotate-90 md:rotate-0">
+                        ➜
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-4 text-center h-full flex flex-col justify-center">
+                        <div class="text-3xl mb-2">🤝</div>
+                        <h4 class="font-bold text-indigo-800">퍼블리셔 연합 (LY Corp)</h4>
+                        <p class="text-sm text-indigo-600 mt-1">사업권과 개발권 분리<br>글로벌 플랫폼 활용</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                     <!-- Chart 3: Genre Shift -->
+                    <div class="border-t pt-6">
+                         <h4 class="text-center font-semibold text-gray-700 mb-4">산업 포트폴리오 변화 전망 (2023 vs 2026)</h4>
+                         <div class="chart-container" style="height: 250px;">
+                             <canvas id="genreChart"></canvas>
+                         </div>
+                    </div>
+                    <div class="border-t pt-6 flex flex-col justify-center">
+                        <div class="bg-teal-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-teal-800 mb-2">라인스튜디오 전략의 핵심 시사점</h4>
+                            <p class="text-sm text-gray-700 mb-2">
+                                <strong>1. 캐주얼 게임 투자 확대:</strong> MMORPG 대비 낮은 개발비, 높은 글로벌 확장성.
+                            </p>
+                            <p class="text-sm text-gray-700 mb-2">
+                                <strong>2. 저 PBR 인수 전략:</strong> 시장 평가가 낮은 우량 개발사를 인수하여 IP를 내재화.
+                            </p>
+                            <p class="text-sm text-gray-700">
+                                <strong>3. 수익 배분 이슈:</strong> 개발사(IP소유)와 퍼블리셔(사업권) 간의 구조적 긴장 관계 해결이 독자 생존의 열쇠.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: INVESTMENT STRATEGY MATIX -->
+        <section>
+            <div class="mb-6 border-l-4 border-pink-600 pl-4">
+                <h2 class="text-2xl font-bold text-gray-900">4. 투자자 및 경영진을 위한 제언</h2>
+                <p class="mt-2 text-gray-600">
+                    2026년 투자의 핵심은 '환율 수혜'와 '자산 가치(PBR)'의 교차점에 있습니다. 
+                    M&A 가능성이 높은 저평가주와 글로벌 매출 비중이 높은 실적주를 구분하여 접근해야 합니다.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-xl card-shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">게임주 투자 매력도 매트릭스 (Valuation vs Global Exp)</h3>
+                <div class="chart-container">
+                    <canvas id="matrixChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="bg-red-50 p-4 rounded text-sm">
+                        <strong class="text-red-700 block mb-1">🔥 고환율 수혜주 (High Global Exp)</strong>
+                        크래프톤, 펄어비스 등 해외 매출 비중이 절대적인 기업. 환율 상승 시 이익 레버리지 효과 극대화.
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded text-sm">
+                        <strong class="text-blue-700 block mb-1">💎 자산 가치주 (Low PBR)</strong>
+                        웹젠, 컴투스 등 PBR 0.5배 수준. M&A 피인수 대상 혹은 주주환원 강화 가능성 높음.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 text-sm py-8 border-t mt-12">
+            <p>데이터 출처: KDI 경제전망, 주요 증권사 리포트 및 기업 공시 자료 재구성</p>
+            <p class="mt-2">Generated by Canvas Infographics Strategy Tool</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- UTILITY: Label Wrapping for Chart.js ---
+        function splitLabel(str, maxLen = 15) {
+            if (str.length <= maxLen) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxLen) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- Common Chart Options ---
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) return label.join(' ');
+                            return label;
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: { font: { family: "'Noto Sans KR', sans-serif" } }
+                }
+            }
+        };
+
+        // --- CHART 1: Macro Outlook (Mixed Line/Bar) ---
+        const ctxMacro = document.getElementById('macroChart').getContext('2d');
+        new Chart(ctxMacro, {
+            type: 'line',
+            data: {
+                labels: ['2023', '2024', '2025(E)', '2026(E)', '2027(E)'],
+                datasets: [
+                    {
+                        label: '경제 성장률 (%)',
+                        data: [1.4, 2.2, 2.0, 1.9, 1.8],
+                        borderColor: '#3B82F6', // Blue 500
+                        backgroundColor: '#3B82F6',
+                        yAxisID: 'y',
+                        type: 'bar',
+                        barThickness: 30
+                    },
+                    {
+                        label: '기준 금리 추이 (%)',
+                        data: [3.5, 3.5, 3.0, 2.75, 2.5],
+                        borderColor: '#EF4444', // Red 500
+                        backgroundColor: '#EF4444',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        yAxisID: 'y1',
+                        type: 'line'
+                    }
+                ]
+            },
+            options: {
+                ...commonOptions,
+                interaction: { mode: 'index', intersect: false },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: '성장률 (%)' },
+                        grid: { drawOnChartArea: false }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: '금리 (%)' },
+                        min: 0,
+                        max: 5
+                    }
+                }
+            }
+        });
+
+        // --- CHART 2: PBR Valuation Bar Chart ---
+        const ctxPbr = document.getElementById('pbrChart').getContext('2d');
+        const pbrLabels = ['글로벌 빅테크 평균', '국내 대형사(엔씨/크래프톤)', '적정 가치 기준(Threshold)', '컴투스', '웹젠'];
+        const processedPbrLabels = pbrLabels.map(l => splitLabel(l, 12));
+
+        new Chart(ctxPbr, {
+            type: 'bar',
+            data: {
+                labels: processedPbrLabels,
+                datasets: [{
+                    label: '2025-26 예상 PBR (배)',
+                    data: [3.5, 1.8, 1.0, 0.55, 0.48],
+                    backgroundColor: [
+                        '#94A3B8', // Grey (Global)
+                        '#60A5FA', // Light Blue (Major)
+                        '#1E293B', // Dark Grey (Threshold)
+                        '#8B5CF6', // Violet (Target)
+                        '#7C3AED'  // Dark Violet (Target)
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    annotation: {
+                        // Ideally using chartjs-plugin-annotation but sticking to standard for stability without extra plugins
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'PBR (배)' },
+                        grid: { borderDash: [5, 5] }
+                    },
+                    x: {
+                        ticks: { autoSkip: false }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 3: Genre Portfolio Shift (Doughnut) ---
+        const ctxGenre = document.getElementById('genreChart').getContext('2d');
+        new Chart(ctxGenre, {
+            type: 'doughnut',
+            data: {
+                labels: ['MMORPG/Hardcore', 'Casual/Puzzle', 'Hybrid/Strategy'],
+                datasets: [
+                    {
+                        label: '2023 포트폴리오',
+                        data: [70, 15, 15],
+                        backgroundColor: ['#1E3A8A', '#93C5FD', '#E2E8F0'], // Dark Blue, Light Blue, Grey
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    },
+                    {
+                        label: '2026 목표 포트폴리오',
+                        data: [40, 35, 25],
+                        backgroundColor: ['#1E3A8A', '#3B82F6', '#10B981'], // Dark Blue, Bright Blue, Emerald
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        weight: 0.8
+                    }
+                ]
+            },
+            options: {
+                ...commonOptions,
+                cutout: '40%',
+                plugins: {
+                    ...commonOptions.plugins,
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 4: Investment Matrix (Scatter) ---
+        // Data points: x=PBR, y=Global Revenue %, r=Market Cap Size (proxy)
+        const ctxMatrix = document.getElementById('matrixChart').getContext('2d');
+        new Chart(ctxMatrix, {
+            type: 'bubble',
+            data: {
+                datasets: [
+                    {
+                        label: '저평가 자산주 (M&A 타겟)',
+                        data: [
+                            { x: 0.48, y: 30, r: 10, company: '웹젠' },
+                            { x: 0.55, y: 45, r: 12, company: '컴투스' },
+                            { x: 0.6, y: 20, r: 8, company: '네오위즈' }
+                        ],
+                        backgroundColor: 'rgba(124, 58, 237, 0.7)', // Violet
+                        borderColor: '#7C3AED'
+                    },
+                    {
+                        label: '글로벌 확장 주도주',
+                        data: [
+                            { x: 2.1, y: 94, r: 25, company: '크래프톤' },
+                            { x: 1.5, y: 70, r: 15, company: '펄어비스' }
+                        ],
+                        backgroundColor: 'rgba(239, 68, 68, 0.7)', // Red
+                        borderColor: '#EF4444'
+                    },
+                    {
+                        label: '전통 강자 (전환기)',
+                        data: [
+                            { x: 1.2, y: 35, r: 20, company: '엔씨소프트' },
+                            { x: 1.1, y: 40, r: 18, company: '넷마블' }
+                        ],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)', // Blue
+                        borderColor: '#3B82F6'
+                    }
+                ]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'PBR (Valuation) - 낮을수록 저평가' },
+                        min: 0,
+                        max: 3
+                    },
+                    y: {
+                        title: { display: true, text: '해외 매출 비중 (%) - 높을수록 환율 수혜' },
+                        min: 0,
+                        max: 100
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const point = context.raw;
+                                return `${point.company}: PBR ${point.x}배, 해외매출 ${point.y}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
